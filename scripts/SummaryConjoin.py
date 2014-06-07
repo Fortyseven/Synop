@@ -1,12 +1,9 @@
 import sys, random, re
-class FSGenerator:
-    def __init__(self):
-        pass
-    def generate(self, string1, string2):
-        pass
+
+from ISummaryGenerator import ISummaryGenerator
 
 ###############################################################################
-class FSStyle1(FSGenerator):
+class SummaryConjoin(ISummaryGenerator):
     '''Generates a frankensummary by finding common words between two random
     synopsiseseses and uses a random one of them as a break point to join the
     two.'''
@@ -36,7 +33,3 @@ class FSStyle1(FSGenerator):
                     # offset in the second string
                     words.append([word, foo_res.start(), res.start()])
         return words
-
-###############################################################################
-class FSStyle2(FSGenerator):
-    pass

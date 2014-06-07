@@ -25,6 +25,13 @@ def main():
             eos = temp[len(temp)-1];
             if eos in acceptable_eos:
                 hash = hashlib.md5(temp).hexdigest()
+
+                if temp.find("Test video at") > -1:
+                    reject += 1
+                    continue
+                if temp.find("A test Example") > -1:
+                    reject += 1
+                    continue
                 if temp.find("An example of") > -1:
                     reject += 1
                     continue
