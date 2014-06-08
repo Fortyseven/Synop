@@ -40,9 +40,9 @@ body {
 }
 
 #Desc {
-    font-family: serif;
+    /*font-family: sans-serif;*/
     font-size:   small;
-    font-weight: bold;
+    /*font-weight: bold;*/
     text-align:  center;
     color:       #444;
 
