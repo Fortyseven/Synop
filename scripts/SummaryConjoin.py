@@ -10,10 +10,10 @@ class SummaryConjoin(ISummaryGenerator):
     def generate(self, string1, string2):
         common_words = self.findCommonWords(string1, string2)
         if not len(common_words): return None
+
         cword = common_words[random.randrange(0, len(common_words))]
-        #print "cword = " + cword[0]
         newstring = string1[0:cword[1]] + string2[ cword[2]:]
-        return newstring
+        return (newstring, string1, string2)
 
     def findCommonWords(self, foo, bar):
         words = []

@@ -348,3 +348,8 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+#Details {
+    font-size: small;
+    font-family: monospace;
+}

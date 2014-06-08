@@ -8,6 +8,7 @@
 #-------------------------------------------------------------------------------
 
 import sys, random, json, cgi
+
 from SummaryConjoin import SummaryConjoin
 from SummaryNFlix import SummaryNFlix
 from SummaryAppendage import SummaryAppendage
@@ -31,40 +32,38 @@ def generateFrankensummary(type_arg):
         gen = SummaryConjoin()
     elif type_arg == 'append':
         gen = SummaryAppendage()
+    else:
+        return (None, string1, string2)
 
     return gen.generate(string1, string2)
 
 def main():
+    MAX_TRIES = 99
+
     arguments = cgi.FieldStorage()
 
     if arguments.has_key('seed'):
-        arg_seed = arguments['seed']
+        arg_seed = arguments['seed'].value
     else:
         arg_seed = random.randint(0, sys.maxint)
 
     if arguments.has_key('type'):
-        arg_type = arguments['type']
+        arg_type = arguments['type'].value
     else:
         arg_type = "append"
 
-    #if not type in ["conjoin", "nflix"]:
-    #    exit()
+    if not arg_type in ["conjoin", "nflix", "append"]:
+        exit()
 
     loadStrings()
 
-    #seed = random.randint(0, sys.maxint)
-    #arg_seed = 336901525
-    #arg_seed = 575186328
-    random.seed(arg_seed)
-    #print "#################################"
-    #print "Seed = "  + str(seed)
-    #print "NEW: " +
     print "Content-type: text/html\n\n"
+
+    random.seed(arg_seed)
 
     # If generateFrankensummary() returns None, it means no words were common
     # between the chosen summaries; try again.
-    for i in range(99):
-        print "Try #%s" % (i)
+    for i in range(MAX_TRIES):
         out,string1,string2 = generateFrankensummary(arg_type)
         if out: break
 
@@ -78,8 +77,8 @@ def main():
     else:
         result_string = json.dumps(out)
 
-    #print "{ \"result\":" + result_string + ", " + seed_string  + ", " + type_string + ", " + string1_string + ", " + string2_string + " }"
-    print "{ \"result\":" + result_string + ", " + seed_string  + ", " + type_string + " }"
+    print "{ \"result\":" + result_string + ", " + seed_string  + ", " + type_string + ", " + string1_string + ", " + string2_string + " }"
+    #print "{ \"result\":" + result_string + ", " + seed_string  + ", " + type_string + " }"
 
 if __name__ == '__main__':
     main()

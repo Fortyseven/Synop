@@ -1,22 +1,54 @@
+var getvars;
+var seed = null, prev_seed = null;
+var type = "append"; // conjoin, nflix
+
 $( document ).ready( function ()
 {
     populateReloadButton();
+    getvars = getUrlVars();
+    reload();
+} );
+
+function reload()
+{
+    $( "#synop" ).hide();
+    getvars = getvars || {};
 
     $.ajax( {
         dataType: "json",
-        url:      "scripts/generate.py",
+        //dataType: "text",
+        data:     {
+            "type": (getvars['type'] || "append"),
+            "seed": (getvars['seed'] || "")
+        },
+        url:      "scripts/GenerateSummary.py",
         success:  function ( data )
         {
+            console.log( "RESULT: ", data );
             $( "#synop" ).html( data.result ).fadeIn( "slow" );
+            prev_seed = seed;
+            seed = data.seed
+            type = data.type
+//            if (prev_seed) {
+//                $( "#Previous a" ).attr( "href", "index.html?seed=" + prev_seed );
+//                $( "#Previous" ).show();
+//            } else {
+//                $( "#Previous" ).hide();
+//            }
+            $( "#DirectLink" ).attr( "href", "index.html?seed=" + seed + "&type=" + type);
+            $( "#Details" ).html( "Seed: " + seed + "; Type:" + type );
         },
         error:    function ( resp, msg )
         {
             console.log( resp, msg );
             $.jnotify( resp.statusText, "error" );
-            location.reload();
+            //location.reload();
         }
     } );
-} );
+
+    // So we don't keep reloading from them next time reload() is called
+    getvars = null;
+}
 
 var reload_button_values = [
     'Eh, pitch me another one...',
@@ -49,10 +81,19 @@ var reload_button_values = [
     'Decent. Come back next month and pitch it again.',
     'I love it! ...HA! I\'m kidding, it\'s terrible.',
     'People that pitch movies like this make me sick.'
-
 ];
 
 function populateReloadButton()
 {
     $( "#Reload" ).html( reload_button_values[Math.round( Math.random() * reload_button_values.length )] );
+}
+
+function getUrlVars()
+{
+    var vars = {};
+    window.location.href.replace( /[?&]+([^=&]+)=([^&]*)/gi, function ( m, key, value )
+    {
+        vars[key] = value;
+    } );
+    return vars;
 }

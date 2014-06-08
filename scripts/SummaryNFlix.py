@@ -17,8 +17,6 @@ class SummaryNFlix(ISummaryGenerator):
             syn_a = string1
             syn_b = string2
 
-        #rows = [] #len(syn_b)/self.MAX_COL
-
         rows = []
         x = 0
         y = 0
@@ -35,8 +33,6 @@ class SummaryNFlix(ISummaryGenerator):
         if cur_row:
             rows.append(cur_row)
 
-        #print "Before: " + "".join(rows)
-
         x = 0
         y = 0
         cur_row = list(rows[y])
@@ -50,7 +46,5 @@ class SummaryNFlix(ISummaryGenerator):
                 cur_row = list(rows[y])
         if cur_row:
             rows[y] = "".join(cur_row)
-
-        #print "Before: " + "".join(rows)
 
         return ("".join(rows), string1, string2)
