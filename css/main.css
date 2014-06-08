@@ -350,6 +350,7 @@ textarea {
 }
 
 #Details {
-    font-size: small;
+    font-size:   small;
     font-family: monospace;
+    color:       #555;
 }

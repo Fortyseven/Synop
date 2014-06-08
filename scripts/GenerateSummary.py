@@ -1,6 +1,5 @@
-#!C:\DevTools\Python27\python
 #!/usr/bin/python
-
+#!C:\DevTools\Python27\python
 #-------------------------------------------------------------------------------
 # Name:        GenerateSummary
 # Author:      Fortyseven
@@ -38,12 +37,13 @@ def generateFrankensummary(type_arg):
     return gen.generate(string1, string2)
 
 def main():
+    print "Content-type: text/html\n\n"
     MAX_TRIES = 99
 
     arguments = cgi.FieldStorage()
 
     if arguments.has_key('seed'):
-        arg_seed = arguments['seed'].value
+        arg_seed = int(arguments['seed'].value)
     else:
         arg_seed = random.randint(0, sys.maxint)
 
@@ -57,9 +57,7 @@ def main():
 
     loadStrings()
 
-    print "Content-type: text/html\n\n"
-
-    random.seed(arg_seed)
+    random.seed(int(arg_seed))
 
     # If generateFrankensummary() returns None, it means no words were common
     # between the chosen summaries; try again.
