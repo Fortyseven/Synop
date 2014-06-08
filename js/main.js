@@ -27,6 +27,7 @@ function reload()
             console.log( "RESULT: ", data );
             $( "#synop" ).html( data.result ).fadeIn( "slow" );
             prev_seed = seed;
+
             seed = data.seed
             type = data.type
 //            if (prev_seed) {

@@ -1,5 +1,5 @@
-#!/usr/bin/python
 #!C:\DevTools\Python27\python
+#!/usr/bin/python
 #-------------------------------------------------------------------------------
 # Name:        GenerateSummary
 # Author:      Fortyseven
@@ -45,7 +45,7 @@ def main():
     if arguments.has_key('seed'):
         arg_seed = int(arguments['seed'].value)
     else:
-        arg_seed = random.randint(0, sys.maxint)
+        arg_seed = random.randint(0, sys.maxint) #4294967295)
 
     if arguments.has_key('type'):
         arg_type = arguments['type'].value
@@ -65,10 +65,10 @@ def main():
         out,string1,string2 = generateFrankensummary(arg_type)
         if out: break
 
-    seed_string = "\"seed\":" + json.dumps(arg_seed);
-    type_string = "\"type\":" + json.dumps(arg_type);
-    string1_string = "\"string1\":" + json.dumps(string1);
-    string2_string = "\"string2\":" + json.dumps(string2);
+    seed_string = "\"seed\":" + json.dumps(str(arg_seed))
+    type_string = "\"type\":" + json.dumps(arg_type)
+    string1_string = "\"string1\":" + json.dumps(string1)
+    string2_string = "\"string2\":" + json.dumps(string2)
 
     if not out:
         result_string = "ERROR GENERATING SPOOF";
