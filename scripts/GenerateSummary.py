@@ -1,5 +1,5 @@
-#!C:\DevTools\Python27\python
 #!/usr/bin/python
+#!C:\DevTools\Python27\python
 #-------------------------------------------------------------------------------
 # Name:        GenerateSummary
 # Author:      Fortyseven
@@ -11,17 +11,23 @@ import sys, random, json, cgi
 from SummaryConjoin import SummaryConjoin
 from SummaryNFlix import SummaryNFlix
 from SummaryAppendage import SummaryAppendage
+from Utils import Utils
 
 summary_strings = None
+
+class Settings:
+    jesters_mode = False
+
+settings = Settings()
+
 
 def loadStrings():
     global summary_strings
     f = open("summaries.clean.txt", "rb")
     summary_strings = f.readlines()
 
-
-
 def generateFrankensummary(type_arg):
+    global settings
     '''Choose a pair of candidate summaries.'''
     string1 = summary_strings[random.randrange(0, len(summary_strings))].strip()
     string2 = summary_strings[random.randrange(0, len(summary_strings))].strip()
@@ -42,6 +48,9 @@ def main():
 
     arguments = cgi.FieldStorage()
 
+    if arguments.has_key('dismal'):
+        settings.jesters_mode = True
+
     if arguments.has_key('seed'):
         arg_seed = int(arguments['seed'].value)
     else:
@@ -58,12 +67,16 @@ def main():
     loadStrings()
 
     random.seed(int(arg_seed))
+    #random.seed(1116772898)
 
     # If generateFrankensummary() returns None, it means no words were common
     # between the chosen summaries; try again.
     for i in range(MAX_TRIES):
         out,string1,string2 = generateFrankensummary(arg_type)
         if out: break
+
+    if settings.jesters_mode:
+        out = Utils.Jesterize(out)
 
     seed_string = "\"seed\":" + json.dumps(str(arg_seed))
     type_string = "\"type\":" + json.dumps(arg_type)

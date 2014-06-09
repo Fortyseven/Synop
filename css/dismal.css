@@ -20,8 +20,8 @@ textarea {
 
 html {
     font-family:     Oswald, sans-serif;
-    background:      #737373;
-    background:      url("../img/film.jpg") no-repeat bottom center fixed;
+    background:      #fff300;
+    /*background:      url("../img/film.jpg") no-repeat bottom center fixed;*/
     background-size: cover;
 }
 
@@ -33,29 +33,25 @@ body {
 
 #Title {
     /*font-size:   6em;*/
-    font-size:   12em;
+    font-size:   6em;
     text-align:  center;
-    font-family: "Special Elite", sans-serif;
+    font-family: "Oswald", sans-serif;
     line-height: 1em;
-}
-
-.dj #Title {
-    font-size: 2em;
-    color: red;
 }
 
 #Desc {
     /*font-family: sans-serif;*/
-    font-size:   small;
+    font-size:  small;
     /*font-weight: bold;*/
-    text-align:  center;
-    color:       #444;
+    text-align: center;
+    color:      #444;
 
 }
 
 #synop {
+    font-family:    "Special Elite";
     font-size:      2em;
-    color:          #cccccc;
+    color:          black;
     text-shadow:    0px 0px 6px black;
     max-width:      1024px;
     margin-left:    auto;

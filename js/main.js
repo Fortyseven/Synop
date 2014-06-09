@@ -1,6 +1,7 @@
 var getvars;
 var seed = null, prev_seed = null;
 var type = "append"; // conjoin, nflix
+var dismal = false;
 
 $( document ).ready( function ()
 {
@@ -18,8 +19,9 @@ function reload()
         dataType: "json",
         //dataType: "text",
         data:     {
-            "type": (getvars['type'] || "append"),
-            "seed": (getvars['seed'] || "")
+            "type":   (getvars['type'] || "append"),
+            "seed":   (getvars['seed'] || ""),
+            "dismal": (getvars['dismal'] || dismal || null)
         },
         url:      "scripts/GenerateSummary.py",
         success:  function ( data )
@@ -36,7 +38,8 @@ function reload()
 //            } else {
 //                $( "#Previous" ).hide();
 //            }
-            $( "#DirectLink" ).attr( "href", "index.html?seed=" + seed + "&type=" + type);
+
+            $( "#DirectLink" ).attr( "href", (dismal?"dismal":"index") + ".html?seed=" + seed + "&type=" + type );
             $( "#Details" ).html( "Seed: " + seed + "; Type:" + type );
         },
         error:    function ( resp, msg )
