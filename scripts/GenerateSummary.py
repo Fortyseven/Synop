@@ -1,5 +1,5 @@
-#!/usr/bin/python
 #!C:\DevTools\Python27\python
+#!/usr/bin/python
 #-------------------------------------------------------------------------------
 # Name:        GenerateSummary
 # Author:      Fortyseven

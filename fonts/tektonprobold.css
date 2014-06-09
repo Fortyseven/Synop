@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'TektonProBold';
+    src: url('tektonprobold.eot');
+    src: url('tektonprobold.eot') format('embedded-opentype'),
+         url('tektonprobold.woff') format('woff'),
+         url('tektonprobold.ttf') format('truetype'),
+         url('tektonprobold.svg#TektonProBold') format('svg');
+}
