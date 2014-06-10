@@ -31,6 +31,7 @@ def generateFrankensummary(type_arg):
     '''Choose a pair of candidate summaries.'''
     string1 = summary_strings[random.randrange(0, len(summary_strings))].strip()
     string2 = summary_strings[random.randrange(0, len(summary_strings))].strip()
+
     if type_arg == 'nflix':
         gen = SummaryNFlix()
     elif type_arg == 'conjoin':
@@ -73,10 +74,23 @@ def main():
     # between the chosen summaries; try again.
     for i in range(MAX_TRIES):
         out,string1,string2 = generateFrankensummary(arg_type)
-        if out: break
+        if out:
+            if settings.jesters_mode:
+                out = Utils.Jesterize(out)
+                # Ensure plot has the Dismal cast in it
+                has_actors = False
+                for actor in Utils.dismal_characters:
+                    if out.find(actor) > -1:
+                        has_actors = True
+                        break
+                if has_actors:
+                    break
 
-    if settings.jesters_mode:
-        out = Utils.Jesterize(out)
+            else:
+                break
+
+
+
 
     seed_string = "\"seed\":" + json.dumps(str(arg_seed))
     type_string = "\"type\":" + json.dumps(arg_type)

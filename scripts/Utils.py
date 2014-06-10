@@ -91,7 +91,7 @@ class Utils:
          'Marlon', 'Manuel', 'Corey', 'Ivan', 'Nikita', 'Fernando', 'Star', 'Carlos', 'Ricky', 'Carrie', 'Bruce', 'Chun',
          'Dexter', 'January', 'Chet', 'Minnie', 'Dewey', 'Louie', 'Leta', 'Diane', 'Ursula', 'Bud', 'Houston', 'Wilbur', 'Tia',
          'Murray', 'Whitney', 'Dominic', 'Gregory', 'Dale', 'Earl', 'Coleman', 'Marvel', 'Diego', 'Frances', 'Augustine',
-         'Luz', 'Brook', 'Joel', 'Bernard', 'Basil', 'Kim', 'Teresa', 'Sue', 'Sylvester', 'Raoul',
+         'Luz', 'Brook', 'Joel', 'Bernard', 'Basil', 'Kim', 'Teresa', 'Sue', 'Sylvester', 'Raoul','Edd',
          'Bobbie', 'Mel', 'Sylvia', 'Bart', 'Yasmin', 'Angelina', 'Helena', 'Wendy', 'Trevor', 'Heidi', 'Eun', 'Chae',
          'Hee', 'Hyo', 'Jong', 'Kris', 'Ira', 'Irwin', 'Neal', 'Tina', 'Rocky', 'Rob', 'Winnie', 'Lily',
          'Alison', 'Brain', 'Dani', 'Sasha', 'Hayley', 'Tora', 'Raye', 'Ashley', 'Patrick', 'Cecilia', 'Del', 'Jean', 'Ivey',
@@ -107,7 +107,7 @@ class Utils:
          'Karan', 'Roy', 'Dionne', 'Duncan', 'Adrien', 'Suzanne', 'Hal', 'Benedict', 'Quincy', 'Barton', 'Lorelei', 'Dorothy',
          'Marshall', 'Felix', 'Galen', 'Octavio', 'Drew', 'Jefferson', 'Foster', 'Brooke', 'Meg', 'Hank', 'Jayne', 'Linda', 'Kronk',
          'Celia', 'Denise', 'Donovan', 'Bo', 'Dalton', 'Tanner', 'Caprice', 'Elin', 'Agnes', 'Edie', 'Thea', 'Eddy', 'Laurence', 'Spock',
-         'Tijuana', 'Odessa', 'Honey', 'Palmer', 'Hedy', 'Vance', 'Dixie', 'Ester', 'Louise', 'Harriet', 'Tosha', 'Jacques', 'Aku',
+         'Tijuana', 'Odessa', 'Honey', 'Palmer', 'Hedy', 'Vance', 'Dixie', 'Ester', 'Louise', 'Harriet', 'Tosha', 'Jacques', 'Aku', 'Anoke',
          'Marianne', 'Nevada', 'Yan', 'Mitch', 'Bianca', 'Colin', 'Fatima', 'Pablo', 'Taryn', 'Danielle', 'Lorna', 'Yael',
          'Lea', 'Mariah', 'Charity', 'Booker', 'Jana', 'Kirk', 'Scotty', 'Alpha', 'Jarvis', 'Mindy', 'Pingu','Pinga','Caillou',
          'Cornelia', 'Janell', 'Elwood', 'Myung-hoon')
@@ -133,6 +133,7 @@ class Utils:
         string = re.sub(r"(?=\W?)(her sexual)(?=\W+)", 'his sexual', string)
         string = string.replace('SHIELD.', 'SHIELD')
         string = string.replace('S.H.I.E.L.D.', 'SHIELD')
+        string = string.replace('Col.', 'Colonel')
         #print cur_actor
         for k, name in enumerate(Utils.first_names):
             if (string.find(name) > -1):
